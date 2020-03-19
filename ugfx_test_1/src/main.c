@@ -32,13 +32,26 @@ SOFTWARE.
 
 #include "gfx.h"
 
+
+
 #include "board_framebuffer.h"
 #include "ugfx/drivers/gdisp/framebuffer/gdisp_lld_config.h"
+
+
 
 void init_systick() {
     SysTick->LOAD = 8000000 / 1000 - 1;
     SysTick->VAL = 8000000 / 1000 - 1;
     SysTick->CTRL |= SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk;
+
+}
+
+void init_basic_timer() {
+	RCC->APB1ENR1 |= RCC_APB1ENR1_TIM6EN; //clock
+	RCC->AHB2ENR |= RCC_AHB2ENR_GPIOAEN;
+
+	TIM6->ARR = 0xFFFF; // it seems to be the default, but whatever
+	TIM6->CR1 |= TIM_CR1_CEN; // counter enabled
 
 }
 
@@ -115,6 +128,17 @@ systemticks_t gfxMillisecondsToTicks(delaytime_t ms) {
 //	}
 //}
 
+void gdisp_test() {
+	coord_t x1 = 1, x2 = 100;
+	coord_t y1 = 1, y2 = 100;
+
+	gdispDrawLine(x1, y1, x2, y2, RGB2COLOR(255, 0, 0));
+
+
+	gFont font = gdispOpenFont("DejaVuSans12");
+
+
+}
 
 
 int main(void)
@@ -124,6 +148,8 @@ int main(void)
 	int i = 0;
 
 //	console_test();
+
+	gdisp_test();
 
 	while (1 == 1) {
 		++i;

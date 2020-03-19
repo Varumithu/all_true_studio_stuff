@@ -15,21 +15,30 @@
 
 #ifdef GDISP_DRIVER_VMT
 
+
+#define SCREEN_SIZE 300 * 200
+#define SCREEN_HEIGHT 200
+#define SCREEN_WIDTH 300
+
+static uint8_t frame_buffer[SCREEN_SIZE];
+
 	static void board_init(GDisplay *g, fbInfo *fbi) {
 		// TODO: Initialize your frame buffer device here
 
 		// TODO: Set the details of the frame buffer
-		g->g.Width = 640;
-		g->g.Height = 480;
+		g->g.Width = SCREEN_WIDTH;
+		g->g.Height = SCREEN_HEIGHT;
 		g->g.Backlight = 100;
 		g->g.Contrast = 50;
 		fbi->linelen = g->g.Width * sizeof(LLDCOLOR_TYPE);				// bytes per row
-		fbi->pixels = 0;												// pointer to the memory frame buffer
+		fbi->pixels = &frame_buffer;												// pointer to the memory frame buffer
+//		fbi->pixels = NULL;
 	}
 
 	#if GDISP_HARDWARE_FLUSH
 		static void board_flush(GDisplay *g) {
 			// TODO: Can be an empty function if your hardware doesn't support this
+			// TODO THis needs to ve actually implemented
 			(void) g;
 		}
 	#endif

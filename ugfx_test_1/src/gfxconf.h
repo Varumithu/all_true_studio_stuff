@@ -91,7 +91,7 @@
 //#define GDISP_NEED_QUERY                             GFXOFF
 //#define GDISP_NEED_MULTITHREAD                       GFXOFF
 //#define GDISP_NEED_STREAMING                         GFXOFF
-//#define GDISP_NEED_TEXT                              GFXOFF
+#define GDISP_NEED_TEXT                              GFXON
 //    #define GDISP_NEED_TEXT_WORDWRAP                 GFXOFF
 //    #define GDISP_NEED_TEXT_BOXPADLR                 1
 //    #define GDISP_NEED_TEXT_BOXPADTB                 1
@@ -102,7 +102,7 @@
 //    #define GDISP_INCLUDE_FONT_UI2                   GFXOFF		// The smallest preferred font.
 //    #define GDISP_INCLUDE_FONT_LARGENUMBERS          GFXOFF
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS10          GFXOFF
-//    #define GDISP_INCLUDE_FONT_DEJAVUSANS12          GFXOFF
+    #define GDISP_INCLUDE_FONT_DEJAVUSANS12          GFXON
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS16          GFXOFF
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS20          GFXOFF
 //    #define GDISP_INCLUDE_FONT_DEJAVUSANS24          GFXOFF
@@ -165,7 +165,7 @@
 
 //#define GDISP_TOTAL_DISPLAYS                         1
 
-#define GDISP_DRIVER_LIST                            framebuffer
+//#define GDISP_DRIVER_LIST                            framebuffer
 //    #ifdef GDISP_DRIVER_LIST
 //        // For code and speed optimization define as GFXON or GFXOFF if all controllers have the same capability
 //        #define GDISP_HARDWARE_STREAM_WRITE          GFXOFF
@@ -181,7 +181,8 @@
 //        #define GDISP_HARDWARE_QUERY                 GFXOFF
 //        #define GDISP_HARDWARE_CLIP                  GFXOFF
 
-        #define GDISP_PIXELFORMAT                    GDISP_PIXELFORMAT_RGB888
+//        #define GDISP_PIXELFORMAT                    GDISP_PIXELFORMAT_RGB888
+        #define GDISP_PIXELFORMAT                    GDISP_PIXELFORMAT_MONO // for now let's try and see if there is enough memory for monocolor
 //    #endif
 
 //#define GDISP_USE_GFXNET                             GFXOFF
